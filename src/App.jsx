@@ -5,10 +5,15 @@ import { UserContext } from './context/UserProvider'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import RequireAuth from './components/RequireAuth'
+import Register from './pages/Register'
 
 const App = () => {
 
   const {user} = useContext(UserContext)
+
+  if (user === false) {
+    return <p>Loading...</p>
+  }
 
   return (
     <>
@@ -21,6 +26,7 @@ const App = () => {
               </RequireAuth>
             } />
           <Route path="/login" element={<Login/>} />
+          <Route path="/register" element={<Register/>} />
         </Routes>
     
     </>
