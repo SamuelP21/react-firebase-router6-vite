@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import RequireAuth from './components/RequireAuth'
 import Register from './pages/Register'
+import LayoutContainerForm from './components/LayoutContainerForm'
 
 const App = () => {
 
@@ -25,8 +26,12 @@ const App = () => {
                 <Home/>
               </RequireAuth>
             } />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/register" element={<Register/>} />
+
+          <Route path='/' element={<LayoutContainerForm/>}>
+              <Route path="/login" element={<Login/>} />
+              <Route path="/register" element={<Register/>} />
+          </Route>
+
         </Routes>
     
     </>

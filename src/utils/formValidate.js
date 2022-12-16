@@ -19,9 +19,9 @@ export const formValidate = (getValues) => {
                 return true;
             }  
         },
-        validateEquialsPassword(getValues) {
+        validateEquials(value) {
            return{
-            equialscontrasena: v => v === getValues("password") || "no coninside las contraseña"
+            equialsValores: v => v === value || "no coninside las contraseña"
            }                 
          },
           
