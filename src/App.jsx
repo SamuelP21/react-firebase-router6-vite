@@ -4,9 +4,11 @@ import NavBar from './components/NavBar'
 import { UserContext } from './context/UserProvider'
 import Home from './pages/Home'
 import Login from './pages/Login'
-import RequireAuth from './components/RequireAuth'
+import LayoutRequireAuth from './components/layout/LayoutRequireAuth'
 import Register from './pages/Register'
-import LayoutContainerForm from './components/LayoutContainerForm'
+import LayoutContainerForm from './components/layout/LayoutContainerForm'
+import PerfilUser from './pages/PerfilUser'
+import NotFount from './pages/NotFount'
 
 const App = () => {
 
@@ -19,18 +21,21 @@ const App = () => {
   return (
     <>
       <NavBar/>
-      <div>App</div>
+      
         <Routes>        
-          <Route path="/" element={
-              <RequireAuth>
-                <Home/>
-              </RequireAuth>
-            } />
+
+        <Route path='/' element={<LayoutRequireAuth/>}>
+            <Route index element={<Home/>} />
+            <Route path='/perfil' element={<PerfilUser/>} />
+        </Route>
 
           <Route path='/' element={<LayoutContainerForm/>}>
               <Route path="/login" element={<Login/>} />
               <Route path="/register" element={<Register/>} />
           </Route>
+
+          <Route path="*" element={<NotFount /> }/>
+          
 
         </Routes>
     

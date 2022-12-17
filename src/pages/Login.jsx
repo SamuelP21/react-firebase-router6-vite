@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { UserContext } from "../context/UserProvider"
 import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form";
@@ -8,11 +8,13 @@ import FromInput from "../components/FromInput";
 import { formValidate } from "../utils/formValidate";
 import Title from "../components/Title";
 import Button from "../components/Button";
+import ButtonLoading from "../components/ButtonLoading";
 
 
 const Login = () => {
 
   const {loginUser} = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
   const navegate = useNavigate();
   const {register, handleSubmit, formState: { errors }, setError} = useForm(); 
 
@@ -21,14 +23,15 @@ const Login = () => {
 
   const onSubmit = async(data) => {
     try {
+        setLoading(true);
         await loginUser(data.email, data.password);
         navegate('/');
     } catch (error) {
         console.log(error.code);
         const {code, message} = erroresFirebase(error.code);
-        setError(code, { message });
-        
-  
+        setError(code, { message });  
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -55,7 +58,14 @@ const Login = () => {
             error={errors.password}>
                       <FormError error={errors.password} />
             </FromInput>
-            <Button text="Login" type="submit" />
+            {
+              loading ? 
+                <ButtonLoading />
+              :
+                <Button text="Login" type="submit" />
+
+            }
+            
       </form>
      
     </div>
