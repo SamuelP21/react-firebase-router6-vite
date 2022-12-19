@@ -58,13 +58,7 @@ const Login = () => {
             error={errors.password}>
                       <FormError error={errors.password} />
             </FromInput>
-            {
-              loading ? 
-                <ButtonLoading />
-              :
-                <Button text="Login" type="submit" />
-
-            }
+            <Button text="Login" type="submit" loading={loading}/>
             
       </form>
      

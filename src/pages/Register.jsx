@@ -75,13 +75,7 @@ const Register = () => {
             error={errors.repassword}>
                     <FormError error={errors.repassword} />
             </FromInput>           
-            {
-              loading ? 
-                <ButtonLoading />
-              :
-                <Button text="Register" type="submit" />
-
-            }
+            <Button text="Register" type="submit" loading={loading} />
          </form>
     
     </>
