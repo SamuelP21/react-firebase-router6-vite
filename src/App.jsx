@@ -9,6 +9,7 @@ import Register from './pages/Register'
 import LayoutContainerForm from './components/layout/LayoutContainerForm'
 import PerfilUser from './pages/PerfilUser'
 import NotFount from './pages/NotFount'
+import LayoutRedirect from './components/layout/LayoutRedirect'
 
 const App = () => {
 
@@ -34,8 +35,10 @@ const App = () => {
               <Route path="/register" element={<Register/>} />
           </Route>
 
-          <Route path="*" element={<NotFount /> }/>
-          
+          <Route path='/:nanoid' element={<LayoutRedirect/>}>
+            <Route index element={<NotFount /> }/>
+          </Route>
+          {/** <Route path="*" element={<NotFount /> }/> */}
 
         </Routes>
     
